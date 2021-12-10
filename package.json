@@ -1,0 +1,17 @@
+{
+  "name": "vuepress",
+  "version": "1.0.0",
+  "description": "vuepress demo",
+  "main": "index.js",
+  "author": "zxw",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "vuepress": "^1.8.2"
+  }
+}
