@@ -1,0 +1,33 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - master # default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: 1. set environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: 2. install dep    
+        run: yarn install
+        env:
+          CI: true
+          
+      - name: 3. deploy
+        env:
+          ACCESS_TOKEN_DEPLOY: ${{secrets.DEPLOY_KEY}}
+          PUBLISH_BRANCH: gh-pages
+        run: |
+          chmod +x ./deploy.sh
+          bash ./deploy.sh
