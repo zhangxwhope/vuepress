@@ -8,7 +8,12 @@ module.exports = {
     docsRepo: 'https://github.com/zhangxwhope/vuepress',
     docsDir: 'docs',
     smoothScroll: true,
-    sidebar: 'auto',
+    sidebar: {
+      '/guide/': ['/guide/', '/guide/tip', '/guide/demo'],
+      '/config/': ['/config/'],
+      '/category/': ['/category/'],
+      '/': ['config']
+    },
     locales: {
       '/': {
         selectText: 'Languages',
