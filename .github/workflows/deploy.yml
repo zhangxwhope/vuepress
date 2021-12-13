@@ -20,9 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           
       - name: 2. install dep    
-        run: |
-          npm install
-          npm run docs:build
+        run: npm install
         env:
           CI: true
           
