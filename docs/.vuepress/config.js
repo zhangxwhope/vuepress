@@ -7,7 +7,6 @@ module.exports = {
     editLinks: true,
     docsRepo: 'https://github.com/zhangxwhope/vuepress',
     docsDir: 'docs',
-    lastUpdated: true,
     smoothScroll: true,
     sidebar: 'auto',
     locales: {
@@ -15,6 +14,7 @@ module.exports = {
         selectText: 'Languages',
         label: 'English',
         editLinkText: 'Edit this page on GitHub',
+        lastUpdated: 'Last Updated',
         serviceWorker: {
           updatePopup: {
             message: "New content is available.",
@@ -32,6 +32,7 @@ module.exports = {
         selectText: '选择语言',
         label: '简体中文',
         editLinkText: '在 GitHub 上编辑此页',
+        lastUpdated: '上次更新',
         serviceWorker: {
           updatePopup: {
             message: "发现新内容可用.",
@@ -58,5 +59,18 @@ module.exports = {
       lang: 'zh-CN'
     }
   },
-  plugins: ['@vuepress/back-to-top']
+  plugins: [
+    '@vuepress/back-to-top',
+    [
+      '@vuepress/last-updated',
+      {
+        transformer: (timestamp, lang) => {
+          // 不要忘了安装 moment
+          const moment = require('moment')
+          moment.locale(lang)
+          return moment(timestamp).format('YYYY-MM-DD HH:mm')
+        }
+      }
+    ]
+  ]
 }

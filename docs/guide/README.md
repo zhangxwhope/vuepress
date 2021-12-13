@@ -1,6 +1,6 @@
 # 介绍
 
-### Introduce <Badge text="haha" />
+## Introduce <Badge text="haha" />
 
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
@@ -12,11 +12,15 @@
 这是一个提示
 :::
 
+## 示例JS
+
 ``` js
 export default {
   name: 'Test'
 }
 ```
+
+## 示例HTML
 
 ``` html {6}
 <ul>
