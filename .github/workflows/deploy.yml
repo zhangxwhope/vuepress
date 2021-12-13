@@ -7,28 +7,13 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
-      
-      - name: 1. set environment
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run docs:build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          
-      - name: 2. install dep    
-        run: npm install
-        env:
-          CI: true
-          
-      - name: 3. deploy
-        env:
-          ACCESS_TOKEN_DEPLOY: ${{secrets.DEPLOY_KEY}}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./docs/.vuepress/dist
-        run: |
-          chmod +x ./deploy.sh
-          bash ./deploy.sh
+          github_token: ${{ secrets.DEPLOY_KEY }}
+          publish_dir: ./docs/.vuepress/dist
