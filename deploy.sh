@@ -12,7 +12,11 @@ cd docs/.vuepress/dist
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
 
+# 跳过配置personal_token 和 github_token
+remote_branch="${PUBLISH_BRANCH}"
+
 git init
+git checkout --orphan "${remote_branch}" # 积累无数次commit，不算分支
 
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
