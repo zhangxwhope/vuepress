@@ -17,3 +17,11 @@ jobs:
           static_list: "vuepress"
           force_update: true
           debug: true
+          
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: zhangxwhope
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: zhangxwhope/vuepress
+          branch: gh-pages    
